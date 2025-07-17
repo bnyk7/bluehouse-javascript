@@ -20,23 +20,20 @@ var newsfeed = [
 var usernamePrompt = prompt("Enter username");
 var passwordPrompt = prompt("Enter password");
 
-function signIn(user, pass) {
-    let loggedIn = false; 
-
-    
+function isUserValid(username, password) {
     for (var i = 0; i < database.length; i++) {
-        if (user === database[i].username && pass === database[i].password) {
-            console.log("Login successful!");
-            console.log("Welcome, " + user);
-            console.log("Here is the newsfeed:");
-            console.log(newsfeed);
-            loggedIn = true;
-            break;
+        if (database[i].username === username && database[i].password === password) {
+            return true;
         }
     }
+    return false;
+}
 
-    if (!loggedIn) {
-        alert("Wrong username or password.");
+function signIn(user, pass) {
+    if (isUserValid(user, pass)) {
+        console.log(newsfeed);
+    } else {
+        alert("wrong details");
     }
 }
 
